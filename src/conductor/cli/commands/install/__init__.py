@@ -3,6 +3,7 @@ import shutil
 import subprocess
 import jsonschema.exceptions
 import os
+import tempfile
 import conductor.cli.commands.install.error_codes as err
 from argparse import Namespace
 from conductor.lib.command import BaseCommand
@@ -244,13 +245,25 @@ class Command(BaseCommand):
                 if not os.access(script_to_execute, os.X_OK):
                     print_red(f'Script {script_to_execute} is not executable')
                     return err.INSTALL_SCRIPT_NOT_EXECUTABLE
-                if not dry_run:
-                    try:
-                        subprocess.run([script_to_execute], check=True)
-                    except subprocess.CalledProcessError as e:
-                        print_red(f'Error executing {protocol} script {script_to_execute}: {e}')
-                        return err.ERROR_EXECUTING_INSTALL_SCRIPT
-                print_green(f'Executed {protocol} script {script_to_execute}')
                 if dry_run:
                     print_yellow(f'Dry run, did not execute {protocol} script {script_to_execute}')
+                    continue
+
+                temp_script_path = None
+                try:
+                    fd, temp_script_path = tempfile.mkstemp(suffix='.sh', dir='/tmp', text=True)
+                    os.close(fd)
+                    shutil.copy2(script_to_execute, temp_script_path)
+                    os.chmod(temp_script_path, 0o755)
+                    subprocess.run([temp_script_path], check=True)
+                    print_green(f'Executed {protocol} script {script_to_execute}')
+                except subprocess.CalledProcessError as e:
+                    print_red(f'Error executing {protocol} script {script_to_execute}: {e}')
+                    return err.ERROR_EXECUTING_INSTALL_SCRIPT
+                except Exception as e:
+                    print_red(f'Error preparing {protocol} script {script_to_execute}: {e}')
+                    return err.ERROR_EXECUTING_INSTALL_SCRIPT
+                finally:
+                    if temp_script_path and os.path.exists(temp_script_path):
+                        os.remove(temp_script_path)
         return 0
