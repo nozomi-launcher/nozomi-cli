@@ -1,5 +1,5 @@
 [project]
-name = "conductor"
+name = "nozomi"
 version = "1.1.4"
 authors = [
     { name = "Carlos Chulo" }
@@ -21,7 +21,7 @@ dependencies = [
 ]
 
 [project.entry-points."console_scripts"]
-cli-name = "conductor.cli.__main__:main"
+cli-name = "nozomi.cli.__main__:main"
 
 [build-system]
 requires = ["setuptools"]
@@ -29,4 +29,4 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["src"] # list of folders that contain the packages
-include = ["conductor*"] # package names should match these glob patterns
+include = ["nozomi*"] # package names should match these glob patterns

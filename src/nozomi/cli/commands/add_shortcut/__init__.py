@@ -1,13 +1,13 @@
 import os
 import shutil
 from argparse import Namespace
-import conductor.cli.commands.add_shortcut.error_codes as err
+import nozomi.cli.commands.add_shortcut.error_codes as err
 from collections import namedtuple
-from conductor.cli.console_colors import *
-from conductor.lib.command import BaseCommand
-from conductor.lib.vdf_file import VdfFile
-from conductor.lib.steam_helper import find_steam_user_id, generate_shortcut_vdf_app_id
-from conductor.lib.constants import STEAM_USERDATA_PATH, \
+from nozomi.cli.console_colors import *
+from nozomi.lib.command import BaseCommand
+from nozomi.lib.vdf_file import VdfFile
+from nozomi.lib.steam_helper import find_steam_user_id, generate_shortcut_vdf_app_id
+from nozomi.lib.constants import STEAM_USERDATA_PATH, \
     STEAM_COMPAT_TOOLS_PATH, \
     STEAM_CONFIG_VDF_PATH
 

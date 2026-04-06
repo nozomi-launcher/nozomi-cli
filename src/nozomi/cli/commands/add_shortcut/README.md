@@ -1,4 +1,4 @@
-# conductor-cli-add_shortcut
+# nozomi-cli-add_shortcut
 
 ## Description
 
@@ -6,8 +6,8 @@ Adds a non-steam game to the steam library via the CLI
 
 
 ```bash
-$ ./bin/conductor-cli add_shortcut --help
-usage: conductor-cli add_shortcut [-h] --name <name> --path <path/to/executable> [--compat-tool <compat_tool>] [--hero <path/to/hero/image>] [--logo <path/to/logo/image>] [--tenfoot <path/to/tenfoot/image>] [--boxart <path/to/boxart/image>] [--icon <path/to/icon/image>] [--launch-options <launch options>]
+$ ./bin/nozomi-cli add_shortcut --help
+usage: nozomi-cli add_shortcut [-h] --name <name> --path <path/to/executable> [--compat-tool <compat_tool>] [--hero <path/to/hero/image>] [--logo <path/to/logo/image>] [--tenfoot <path/to/tenfoot/image>] [--boxart <path/to/boxart/image>] [--icon <path/to/icon/image>] [--launch-options <launch options>]
 
 options:
   -h, --help            show this help message and exit
@@ -34,12 +34,12 @@ options:
 Example usage:
 
 ```bash
-$ ./bin/conductor-cli add_shortcut \
+$ ./bin/nozomi-cli add_shortcut \
   --name "My Game" \
   --path "/path/to/my/game/executable" \
   --launch-options "-fullscreen -resolution 1920x1080"
 
-$ ./bin/conductor-cli add_shortcut \
+$ ./bin/nozomi-cli add_shortcut \
   --name "My Game" \
   --path "/path/to/my/game/executable" \
   --launch-options "-fullscreen -resolution 1920x1080" \

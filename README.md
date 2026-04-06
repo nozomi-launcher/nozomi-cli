@@ -1,21 +1,8 @@
-# Steam Conductor
+# Nozomi CLI
 
 ## Description
 
 All in one solution for managing all games within steam.
-
-## Goals of this project
-
-- Enabling batch (un)installation of games with tools such as ansible or plain shell scripts
-- Create a tool for managing mods for all steam games
-  - This includes downloading, installing, updating and removing mods
-  - Letting the user define virtual file systems for mods, much like [Mod Organizer 2](https://www.nexusmods.com/skyrimspecialedition/mods/6194)
-  but for linux
-- Letting the user define game profiles that specify launch options, environment variables, etc. for official steam games
-in an effort to make linux gaming even more accessible.
-  - Allow users to share these profiles with others
-  - Find a way to allow users to map these profiles with their hardware configurations to make it easier for others to discover
-  compatibility fixes
 
 ## Development
 
@@ -28,21 +15,21 @@ in an effort to make linux gaming even more accessible.
 Recommended to use virtual environments to avoid conflicts with system packages.
 
 ```bash
-$ cd /path/to/conductor/project/root
+$ cd /path/to/nozomi/project/root
 $ python3 -m venv .venv
 $ source .venv/bin/activate
 $ pip3 install -e .
-$ python3 ./src/conductor/cli --help
+$ python3 ./src/nozomi/cli --help
 ```
 
-## How to build conductor-cli
+## How to build nozomi-cli
 
 Currently, the project uses pyinstaller to build the binary. This is subject to change.
 
 ```bash
-$ cd /path/to/conductor/project/root
+$ cd /path/to/nozomi/project/root
 $ ./scripts/build.sh
-$ ./bin/conductor-cli --help
+$ ./bin/nozomi-cli --help
 ```
 
 To clean up all build artifacts, run:
@@ -51,11 +38,11 @@ To clean up all build artifacts, run:
 $ ./scripts/clean.sh
 ```
 
-## how to use conductor-cli
+## how to use nozomi-cli
     
 ```bash
-$ ./bin/conductor-cli --help
-usage: conductor-cli [-h] [--version] [command] ...
+$ ./bin/nozomi-cli --help
+usage: nozomi-cli [-h] [--version] [command] ...
 
 All in one steam game manager
 
@@ -69,12 +56,12 @@ positional arguments:
 
 options:
   -h, --help    show this help message and exit
-  --version     Print the version of conductor
+  --version     Print the version of nozomi
 ```
 
 ### Commands
 
-- [info](src/conductor/cli/commands/info/README.md)
-- [add_shortcut](src/conductor/cli/commands/add_shortcut/README.md)
-- [remove_shortcut](src/conductor/cli/commands/remove_shortcut/README.md)
-- [install](src/conductor/cli/commands/install/README.md)
+- [info](src/nozomi/cli/commands/info/README.md)
+- [add_shortcut](src/nozomi/cli/commands/add_shortcut/README.md)
+- [remove_shortcut](src/nozomi/cli/commands/remove_shortcut/README.md)
+- [install](src/nozomi/cli/commands/install/README.md)

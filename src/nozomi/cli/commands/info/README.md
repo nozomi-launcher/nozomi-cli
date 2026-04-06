@@ -1,12 +1,12 @@
-# conductor-cli-info
+# nozomi-cli-info
 
 ## Description
 
 Prints information about the steam library via the CLI
 
 ```bash
-$ ./bin/conductor-cli info --help
-usage: conductor-cli info [-h]
+$ ./bin/nozomi-cli info --help
+usage: nozomi-cli info [-h]
 
 options:
   -h, --help  show this help message and exit
@@ -15,7 +15,7 @@ options:
 Example usage:
 
 ```bash
-$ ./bin/conductor-cli info         
+$ ./bin/nozomi-cli info         
 Shortcuts added to steam:
 original VDFDict([('shortcuts', VDFDict([('0', VDFDict([('appid', -400000000), ('AppName', 'game_executable'), ('Exe', '/path/to/game.exe'), ('StartDir', '"/path/to/game"'), ('icon', '/path/to/game/steamgrid/icon.ico'), ('ShortcutPath', ''), ('LaunchOptions', ''), ('IsHidden', 0), ('AllowDesktopConfig', 1), ('AllowOverlay', 1), ('OpenVR', 0), ('Devkit', 0), ('DevkitGameID', ''), ('DevKitOverrideAppID', 0), ('LastPlayTime', 1709296201), ('FlatpakAppId', ''), ('tags', VDFDict([]))]))]))])
 {
