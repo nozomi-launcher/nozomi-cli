@@ -1,6 +1,6 @@
 import hashlib
 import os
-from conductor.lib.constants import STEAM_USERDATA_PATH
+from nozomi.lib.constants import STEAM_USERDATA_PATH
 import contextlib
 
 

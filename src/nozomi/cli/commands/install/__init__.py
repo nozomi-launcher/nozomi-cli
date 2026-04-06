@@ -4,14 +4,14 @@ import subprocess
 import jsonschema.exceptions
 import os
 import tempfile
-import conductor.cli.commands.install.error_codes as err
+import nozomi.cli.commands.install.error_codes as err
 from argparse import Namespace
-from conductor.lib.command import BaseCommand
+from nozomi.lib.command import BaseCommand
 from jsonschema import validate, FormatChecker
-from conductor.cli.console_colors import *
+from nozomi.cli.console_colors import *
 from urllib.parse import urlparse
-from conductor.lib.steam_helper import find_image_by_name, change_dir
-from conductor.cli.commands.add_shortcut import add_non_steam_game
+from nozomi.lib.steam_helper import find_image_by_name, change_dir
+from nozomi.cli.commands.add_shortcut import add_non_steam_game
 
 
 class Command(BaseCommand):
@@ -48,10 +48,10 @@ class Command(BaseCommand):
             return err.PROGRAM_NOT_INSTALLED
 
         expanded_directory = os.path.expanduser(args.directory)
-        conductor_directory = f'{expanded_directory}/.conductor'
-        if not os.path.exists(conductor_directory):
-            print_red(f'directory {expanded_directory} is not installable by conductor')
-            return err.NOT_A_CONDUCTOR_DIRECTORY
+        nozomi_directory = f'{expanded_directory}/.nozomi'
+        if not os.path.exists(nozomi_directory):
+            print_red(f'directory {expanded_directory} is not installable by nozomi')
+            return err.NOT_A_NOZOMI_DIRECTORY
 
         manifest = self.load_manifest(expanded_directory)
 
@@ -60,7 +60,7 @@ class Command(BaseCommand):
 
         result = self.execute_install_scripts(
             manifest=manifest,
-            directory=f'{conductor_directory}/scripts',
+            directory=f'{nozomi_directory}/scripts',
             dry_run=args.dry_run,
             post_install=False,
             pre_install=True)
@@ -75,11 +75,11 @@ class Command(BaseCommand):
             app_name=manifest['steam']['appName'],
             exe_path=manifest['steam']['exePath'],
             compat_tool=manifest['steam']['compatTool'] if 'compatTool' in manifest['steam'] else None,
-            hero=find_image_by_name('hero', f'{conductor_directory}/steamgrid'),
-            logo=find_image_by_name('logo', f'{conductor_directory}/steamgrid'),
-            tenfoot=find_image_by_name('tenfoot', f'{conductor_directory}/steamgrid'),
-            boxart=find_image_by_name('boxart', f'{conductor_directory}/steamgrid'),
-            icon=find_image_by_name('icon', f'{conductor_directory}/steamgrid'),
+            hero=find_image_by_name('hero', f'{nozomi_directory}/steamgrid'),
+            logo=find_image_by_name('logo', f'{nozomi_directory}/steamgrid'),
+            tenfoot=find_image_by_name('tenfoot', f'{nozomi_directory}/steamgrid'),
+            boxart=find_image_by_name('boxart', f'{nozomi_directory}/steamgrid'),
+            icon=find_image_by_name('icon', f'{nozomi_directory}/steamgrid'),
             launch_options=manifest['steam']['launchOptions'] if 'launchOptions' in manifest['steam'] else None,
             dry_run=args.dry_run,
         ) == 0:
@@ -87,7 +87,7 @@ class Command(BaseCommand):
 
         return self.execute_install_scripts(
             manifest=manifest,
-            directory=f'{conductor_directory}/scripts',
+            directory=f'{nozomi_directory}/scripts',
             dry_run=args.dry_run,
             post_install=True,
             pre_install=False)
@@ -165,7 +165,7 @@ class Command(BaseCommand):
 
     @staticmethod
     def file_exists(instance):
-        return os.path.exists(f'.conductor/scripts/{instance}')
+        return os.path.exists(f'.nozomi/scripts/{instance}')
 
     format_checker = FormatChecker()
     format_checker.checks('filesystem-path')(is_valid_filesystem_path)
@@ -174,10 +174,10 @@ class Command(BaseCommand):
 
     def load_manifest(self, directory: str) -> None | dict:
         with change_dir(directory):
-            if not os.path.exists(f'.conductor/manifest.json'):
+            if not os.path.exists(f'.nozomi/manifest.json'):
                 print_red('Manifest file does not exist')
                 return None
-            with open(f'.conductor/manifest.json') as file:
+            with open(f'.nozomi/manifest.json') as file:
                 file_contents = file.read()
                 manifest_contents = json.loads(file_contents)
 

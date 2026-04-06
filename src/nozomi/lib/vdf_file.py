@@ -3,7 +3,7 @@ import vdf
 import json
 from pathlib import Path
 
-from conductor.cli.console_colors import print_blue
+from nozomi.cli.console_colors import print_blue
 
 
 class VdfFile:

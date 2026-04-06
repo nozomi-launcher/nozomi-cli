@@ -1,8 +1,8 @@
 import os
-from conductor.lib.command import BaseCommand
-from conductor.lib.constants import STEAM_USERDATA_PATH, STEAM_CONFIG_VDF_PATH
-from conductor.lib.steam_helper import find_steam_user_id
-from conductor.lib.vdf_file import VdfFile
+from nozomi.lib.command import BaseCommand
+from nozomi.lib.constants import STEAM_USERDATA_PATH, STEAM_CONFIG_VDF_PATH
+from nozomi.lib.steam_helper import find_steam_user_id
+from nozomi.lib.vdf_file import VdfFile
 
 
 class Command(BaseCommand):

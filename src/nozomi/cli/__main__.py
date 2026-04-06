@@ -3,7 +3,7 @@
 import sys
 import argparse
 
-from conductor.lib.command import BaseCommand
+from nozomi.lib.command import BaseCommand
 
 from commands import info, add_shortcut, remove_shortcut, install
 import importlib.metadata
@@ -14,7 +14,7 @@ def main():
         sys.argv.append('--help')
 
     parser = argparse.ArgumentParser(description="All in one steam game manager")
-    parser.add_argument('--version', action='store_true', help='Print the version of conductor')
+    parser.add_argument('--version', action='store_true', help='Print the version of nozomi')
     subparsers = parser.add_subparsers(metavar="[command]", dest="command", help="Available commands")
     commands: list[BaseCommand] = [
         info.Command(),
@@ -38,8 +38,8 @@ def main():
 
 
 def print_version_and_exit():
-    version = importlib.metadata.version('conductor')
-    print(f'conductor-cli {version}')
+    version = importlib.metadata.version('nozomi')
+    print(f'nozomi-cli {version}')
     sys.exit(0)
 
 

@@ -1,11 +1,11 @@
 import os
-import conductor.cli.commands.remove_shortcut.error_codes as err
+import nozomi.cli.commands.remove_shortcut.error_codes as err
 from collections import namedtuple
-from conductor.cli.console_colors import *
-from conductor.lib.command import BaseCommand
-from conductor.lib.vdf_file import VdfFile
-from conductor.lib.steam_helper import find_steam_user_id, find_image_by_name, generate_shortcut_vdf_app_id
-from conductor.lib.constants import STEAM_USERDATA_PATH
+from nozomi.cli.console_colors import *
+from nozomi.lib.command import BaseCommand
+from nozomi.lib.vdf_file import VdfFile
+from nozomi.lib.steam_helper import find_steam_user_id, find_image_by_name, generate_shortcut_vdf_app_id
+from nozomi.lib.constants import STEAM_USERDATA_PATH
 
 __tuple__ = namedtuple('tuple', 'app_id, error_code')
 

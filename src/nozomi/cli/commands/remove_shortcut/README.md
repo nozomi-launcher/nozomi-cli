@@ -1,4 +1,4 @@
-# conductor-cli-add_shortcut
+# nozomi-cli-add_shortcut
 
 ## Description
 
@@ -6,8 +6,8 @@ Removes a non-steam game to the steam library via the CLI
 
 
 ```bash
-$ ./bin/conductor-cli remove_shortcut --help
-usage: conductor-cli add_shortcut [-h] --app-name <name> --exe-path <path/to/executable> [--dry-run]
+$ ./bin/nozomi-cli remove_shortcut --help
+usage: nozomi-cli add_shortcut [-h] --app-name <name> --exe-path <path/to/executable> [--dry-run]
 
 options:
   -h, --help            show this help message and exit
@@ -20,7 +20,7 @@ options:
 Example usage:
 
 ```bash
-$ ./bin/conductor-cli remove_shortcut \
+$ ./bin/nozomi-cli remove_shortcut \
   --name "My Game" \
   --path "/path/to/my/game/executable"
 ```
